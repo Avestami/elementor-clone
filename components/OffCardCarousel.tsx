@@ -102,13 +102,12 @@ const CardCarousel: React.FC<ProductCarouselProps> = ({ products }) => {
                                         src={product.image}
                                         alt={product.name}
                                         layout="fill"
-                                        objectfit="cover"
+                                        objectFit="cover"
                                         className="rounded-t-lg"
                                     />
                                 </div>
                                 <div className="p-4 text-center">
                                     <h3 className="text-black text-lg font-medium mb-2">{product.name}</h3>
-                                    <p className="text-black mb-2">{product.code}</p>
                                     <p className="text-black text-lg font-bold mb-4">
                                         {new Intl.NumberFormat('fa-IR').format(product.price)} تومان
                                     </p>
