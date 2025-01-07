@@ -4,12 +4,12 @@ import React, { useState } from "react";
 import Slider, { Settings } from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Image from "next/image";
 import { Heart, ChevronRight, ChevronLeft, ShoppingBag } from 'lucide-react';
 
 interface Product {
     id: number;
     name: string;
-    code: string;
     image: string; // You can store image file names here
     price: number;
 }
@@ -100,7 +100,7 @@ const CardCarousel: React.FC<ProductCarouselProps> = ({ products }) => {
                         <div key={product.id} className="px-4">
                             <div className="bg-white rounded-lg overflow-hidden">
                                 <div className="relative aspect-square">
-                                    <img
+                                    <Image
                                         src={product.image}
                                         alt={product.name}
                                         layout="fill"
