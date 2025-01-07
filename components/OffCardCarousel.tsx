@@ -27,28 +27,26 @@ const CardCarousel: React.FC<ProductCarouselProps> = ({ products }) => {
         );
     };
 
-    const PrevArrow = (props: any) => {
-        const { onClick } = props;
+    const NextArrow: React.FC<React.HTMLAttributes<HTMLButtonElement>> = ({ onClick }) => {
         return (
             <button
                 onClick={onClick}
-                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-6 w-12 h-12 flex items-center justify-center bg-[#A7834B] rounded-full shadow-lg z-10 hover:bg-[#9A6F42]"
+                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-6 w-12 h-12 flex items-center justify-center bg-[#A7834B] rounded-full shadow-lg z-10 hover:bg-[#d9c3a5]"
                 aria-label="Previous"
             >
-                <ChevronLeft className="w-6 h-6 text-white" />
+                <ChevronRight className="w-6 h-6 text-white" />
             </button>
         );
     };
 
-    const NextArrow = (props: any) => {
-        const { onClick } = props;
+    const PrevArrow: React.FC<React.HTMLAttributes<HTMLButtonElement>> = ({ onClick }) => {
         return (
             <button
                 onClick={onClick}
-                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-6 w-12 h-12 flex items-center justify-center bg-[#A7834B] rounded-full shadow-lg z-10 hover:bg-[#9A6F42]"
+                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-6 w-12 h-12 flex items-center justify-center bg-[#A7834B] rounded-full shadow-lg z-10 hover:bg-[#d9c3a5]"
                 aria-label="Next"
             >
-                <ChevronRight className="w-6 h-6 text-white" />
+                <ChevronLeft className="w-6 h-6 text-white" />
             </button>
         );
     };
