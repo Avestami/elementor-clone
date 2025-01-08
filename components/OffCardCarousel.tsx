@@ -10,8 +10,9 @@ import { Heart, ChevronRight, ChevronLeft, ShoppingBag } from 'lucide-react';
 interface Product {
     id: number;
     name: string;
-    image: string; // You can store image file names here
+    image: string;
     price: number;
+    discountPercentage: number;
 }
 
 interface ProductCarouselProps {
@@ -94,46 +95,58 @@ const CardCarousel: React.FC<ProductCarouselProps> = ({ products }) => {
             <h2 className="text-2xl font-bold mb-8 text-center">محصولات تخفیف دار</h2>
             <div className="relative px-8">
                 <Slider {...settings}>
-                    {products.map((product) => (
-                        <div key={product.id} className="px-4">
-                            <div className="bg-white rounded-lg overflow-hidden">
-                                <div className="relative aspect-square">
-                                    <Image
-                                        src={product.image}
-                                        alt={product.name}
-                                        layout="fill"
-                                        objectFit="cover"
-                                        className="rounded-t-lg"
-                                    />
-                                </div>
-                                <div className="p-4 text-center">
-                                    <h3 className="text-black text-lg font-medium mb-2">{product.name}</h3>
-                                    <p className="text-black text-lg font-bold mb-4">
-                                        {new Intl.NumberFormat('fa-IR').format(product.price)} تومان
-                                    </p>
-                                    <div className="flex gap-2 justify-center">
-                                        <button
-                                            onClick={() => handleLikeToggle(product.id)}
-                                            className="p-2 rounded-lg border border-gray-200 hover:bg-[#A7834B] hover:text-white"
-                                            aria-label="Add to wishlist"
-                                        >
-                                            <Heart
-                                                className={`w-6 h-6 ${
-                                                    likedItems.includes(product.id)
-                                                        ? 'stroke-black stroke-1'
-                                                        : 'stroke-black stroke-1'
-                                                }`}
-                                            />
-                                        </button>
-                                        <button className="flex-1 flex items-center justify-center gap-2 bg-white text-black px-4 py-2 rounded-lg hover:bg-[#A7834B] hover:text-white">
-                                            <ShoppingBag className="w-5 h-5" />
-                                            <span>افزودن به سبد خرید</span>
-                                        </button>
+                    {products.map((product) => {
+                        const discountedPrice = product.price - (product.price * product.discountPercentage / 100);
+                        return (
+                            <div key={product.id} className="px-4">
+                                <div className="bg-white rounded-lg overflow-hidden relative">
+                                    {/* Discount Badge */}
+                                    <div className="absolute top-2 left-2 bg-red-500 text-white text-xs px-2 py-1 rounded-full z-10">
+                                        -{product.discountPercentage}%
+                                    </div>
+                                    <div className="relative aspect-square">
+                                        <Image
+                                            src={product.image}
+                                            alt={product.name}
+                                            layout="fill"
+                                            objectFit="cover"
+                                            className="rounded-t-lg"
+                                        />
+                                    </div>
+                                    <div className="p-4 text-center">
+                                        <h3 className="text-black text-lg font-medium mb-2">{product.name}</h3>
+                                        {/* Prices */}
+                                        <p className="text-gray-400 line-through text-sm mb-1">
+                                            {new Intl.NumberFormat('fa-IR').format(product.price)} تومان
+                                        </p>
+                                        <p className="text-green-500 text-lg font-bold mb-4">
+                                            {new Intl.NumberFormat('fa-IR').format(discountedPrice)} تومان
+                                        </p>
+                                        <div className="flex gap-2 justify-center">
+                                            <button
+                                                onClick={() => handleLikeToggle(product.id)}
+                                                className="p-2 rounded-lg border border-gray-200 hover:bg-[#A7834B] hover:text-white"
+                                                aria-label="Add to wishlist"
+                                            >
+                                                <Heart
+                                                    className={`w-6 h-6 ${
+                                                        likedItems.includes(product.id)
+                                                            ? 'stroke-black stroke-1'
+                                                            : 'stroke-black stroke-1'
+                                                    }`}
+                                                />
+                                            </button>
+                                            <button
+                                                className="flex-1 flex items-center justify-center gap-2 bg-white text-black px-4 py-2 rounded-lg hover:bg-[#A7834B] hover:text-white">
+                                                <span>افزودن به سبد خرید</span>
+                                                <ShoppingBag className="w-5 h-5"/>
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    ))}
+                        );
+                    })}
                 </Slider>
             </div>
         </div>

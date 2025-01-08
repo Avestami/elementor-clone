@@ -126,9 +126,11 @@ const CardCarousel: React.FC<ProductCarouselProps> = ({ products }) => {
                                                 }`}
                                             />
                                         </button>
-                                        <button className="flex-1 flex items-center justify-center gap-2 bg-white text-black px-4 py-2 rounded-lg hover:bg-[#A7834B] hover:text-white">
-                                            <ShoppingBag className="w-5 h-5" />
+                                        <button
+                                            className="flex-1 flex items-center justify-center gap-2 bg-white text-black px-4 py-2 rounded-lg hover:bg-[#A7834B] hover:text-white">
                                             <span>افزودن به سبد خرید</span>
+                                            <ShoppingBag className="w-5 h-5"/>
+
                                         </button>
                                     </div>
                                 </div>
