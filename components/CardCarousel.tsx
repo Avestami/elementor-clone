@@ -96,8 +96,8 @@ const CardCarousel: React.FC<ProductCarouselProps> = ({ products }) => {
             <div className="relative px-8">
                 <Slider {...settings}>
                     {products.map((product) => (
-                        <div key={product.id} className="px-4">
-                            <div className="bg-white rounded-lg overflow-hidden">
+                        <div key={product.id} className="px-4 group relative my-3">
+                            <div className="bg-white rounded-lg overflow-hidden relative transform transition-transform duration-300 group-hover:-translate-y-3 group-hover:shadow-lg">
                                 <div className="relative aspect-square">
                                     <Image
                                         src={product.image}

@@ -98,10 +98,12 @@ const CardCarousel: React.FC<ProductCarouselProps> = ({ products }) => {
                     {products.map((product) => {
                         const discountedPrice = product.price - (product.price * product.discountPercentage / 100);
                         return (
-                            <div key={product.id} className="px-4">
-                                <div className="bg-white rounded-lg overflow-hidden relative">
+                            <div key={product.id} className="px-4 group relative my-3">
+                                <div
+                                    className="bg-white rounded-lg overflow-hidden relative transform transition-transform duration-300 group-hover:-translate-y-3 group-hover:shadow-lg">
                                     {/* Discount Badge */}
-                                    <div className="absolute top-2 left-2 bg-red-500 text-white text-xs px-2 py-1 rounded-full z-10">
+                                    <div
+                                        className="absolute top-2 left-2 bg-red-500 text-white text-xs px-2 py-1 rounded-full z-10">
                                         -{product.discountPercentage}%
                                     </div>
                                     <div className="relative aspect-square">
